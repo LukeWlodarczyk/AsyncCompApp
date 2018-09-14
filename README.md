@@ -1,5 +1,7 @@
 # Async-Comp-App
 
+Example of async components in React.
+
 ## Tech
 
 - React
@@ -14,6 +16,16 @@ const AsyncHello = asyncComponent({
   errorFallback: <Error />,
   timeWithoutLoader: 200, // in ms / OPTIONAL(default 300) - when the component load faster then provided value loader won't be use
 });
+```
+
+### Setup
+
+```sh
+$ npm install
+```
+
+```sh
+$ npm start
 ```
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
