@@ -9,7 +9,7 @@ Example of async components in React.
 
 ## How to use asyncComponent hoc
 
-```
+```javascript
 const AsyncHello = asyncComponent({
   importComponent: () => import("./components/Hello"),
   loader: <Spinner />,
@@ -17,6 +17,22 @@ const AsyncHello = asyncComponent({
   timeWithoutLoader: 200, // in ms / OPTIONAL(default 300) - when the component load faster then provided value loader won't be use
 });
 ```
+
+## Preloading component
+
+```javascript
+const Header = () => (
+  <ul>
+    <li>
+      <Link to="/">Home</Link>
+    </li>
+    <li>
+      <Link to="/hello" onMouseOver={AsyncHello.preloadComponent}>Hello</Link>
+    </li>
+  </ul>
+);
+```
+
 
 ### Setup
 
