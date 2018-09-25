@@ -11,7 +11,7 @@ export default ({
       component: null,
       loading: false,
       error: false,
-      timer: 0
+      showLoading: false
     };
 
     async componentDidMount() {
@@ -19,9 +19,9 @@ export default ({
         loading: true
       });
 
-      this.interval = setInterval(() => {
-        this.setState({ timer: this.state.timer + 10 });
-      }, 10);
+      this.timeout = setTimeout(() => {
+        this.setState({ showLoading: true});
+      }, timeWithoutLoader);
 
       try {
         const { default: component } = await importComponent();
@@ -43,29 +43,19 @@ export default ({
           component: component
         });
 
-        clearInterval(this.interval);
       } catch (e) {
         this.setState({
           loading: false,
           error: true
         });
-        clearInterval(this.interval);
+        clearTimeout(this.timeout);
       }
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-      return (
-        nextState.component !== this.state.component ||
-        nextState.loading !== this.state.loading ||
-        nextState.error !== this.state.error ||
-        nextState.timer > timeWithoutLoader
-      );
-    }
-
     render() {
-      const { component: Component, loading, error, timer } = this.state;
+      const { component: Component, loading, error, showLoading } = this.state;
 
-      if (loading && timer > timeWithoutLoader) {
+      if (loading && showLoading) {
         return <Loader />;
       }
 
