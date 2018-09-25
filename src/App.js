@@ -30,7 +30,11 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header />
+          <Header 
+            preloadHome={AsyncHome.preloadComponent}  
+            preloadHello={AsyncHello.preloadComponent} 
+            preloadWorld={AsyncWorld.preloadComponent}
+          />
           <Route path="/" exact component={AsyncHome} />
           <Route path="/hello" exact component={AsyncHello} />
           <Route path="/world" exact component={AsyncWorld} />

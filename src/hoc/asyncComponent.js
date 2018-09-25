@@ -14,6 +14,8 @@ export default ({
       showLoading: false
     };
 
+    static preloadComponent = () => importComponent() 
+
     async componentDidMount() {
       this.setState({
         loading: true
